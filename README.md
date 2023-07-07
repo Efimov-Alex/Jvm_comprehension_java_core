@@ -106,14 +106,14 @@ BUILD SUCCESSFUL in 55s
 
 ![task2](./Task2_2.png)
 
-25 секунда - loading io.vertx, loaded 529 classes. Увеличилось Metaspace для хранения объектов и использование процессора.
+1 - 25 секунда - loading io.vertx, loaded 529 classes. Увеличилось Metaspace для хранения объектов и использование процессора.
 
-28 секунда - loading io.netty, loaded 2117 classes. Значительно вырос Metaspace, но также уменьшился Heap size, сработала сборка мусора.
+2 - 28 секунда - loading io.netty, loaded 2117 classes. Значительно вырос Metaspace, но также уменьшился Heap size, сработала сборка мусора.
 
-34 секунда - loading org.springframework, loaded 869 classes. Значительно выросли Metaspace и Heap size.
+3 - 34 секунда - loading org.springframework, loaded 869 classes. Значительно выросли Metaspace и Heap size.
 
-35 секунда - первое creating 5000000 objects. Metaspace немного увеличился. Значительно увеличился Heap size.
+4 - 35 секунда - первое creating 5000000 objects. Metaspace немного увеличился. Значительно увеличился Heap size.
 
-38 секунда - второе creating 5000000 objects. Metaspace незначительно вырос. Значительно увеличился Heap size. Также возрасла активность процессора.
+5 - 38 секунда - второе creating 5000000 objects. Metaspace незначительно вырос. Значительно увеличился Heap size. Также возрасла активность процессора.
 
-41 секунда - третье creating 5000000 objects. Metaspace не изменился. Значительно увеличился Heap size и активность процессора.
+6 - 41 секунда - третье creating 5000000 objects. Metaspace не изменился. Значительно увеличился Heap size и активность процессора.
