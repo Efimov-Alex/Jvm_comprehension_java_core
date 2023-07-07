@@ -34,18 +34,29 @@ public class JvmComprehension {
 При запуске программы сначала классы отдаются для загрузки в ClassLoader. Подгружаются: JvmComprehension, String, Object, Integer, System. 
 
 Далее происходит Связавыние Linking: Здесь происходит подготовка классов к выполнению:
+
 ● проверка, что код валиден,
-● подготовка примитивов в статических
-полях,
+
+● подготовка примитивов в статических полях,
+
 ● связывание ссылок на другие классы
+
 Далее данные, попадают в  Metaspace, Stack Memory и Heap.
+
 Сначала создаётся фрейм main в Stack Memory
+
 1 - в фрейме main int i = 1. В Metaspace - JvmComprehension.class.
+
 2 - в Heap - Object, в фрейме main o.
+
 3 - в Heap - Integer, в фрейме main Integer ii = 2.
+
 4 - создаётся фрейм в Stack Memory printAll. В этом фрейме появляются Object o, int i, Integer ii.
+
 5 - в фрейме printAll  Integer uselessVar = 700.
+
 6 - Создастся новый фрейм в Stack Memory, куда передадим ссылку на o, i, i1. Сборщик мусора для uselessVar.
+
 7 - Создастся новый фрейм в Stack Memory.
 
 
@@ -54,7 +65,7 @@ public class JvmComprehension {
 ## Описание
 Предлагаем вам изучить использование памяти через VisualVM при загрузке новых классов и создании новых объектов
 
-### Результат вывода в консоль [программы](https://github.com/Arsennikum/jvm-visualvm-experience)
+### Результат вывода в консоль.
 ```
 Starting Gradle Daemon...
 Gradle Daemon started in 1 s 388 ms
@@ -89,4 +100,20 @@ BUILD SUCCESSFUL in 55s
 12:24:16: Execution finished ':JvmExperience.main()'.
 ```
 
-### Результат мониторинга посредством VisualVM
+### Мониторинг посредством VisualVM
+
+![task2](./Task2_1.png)
+
+![task2](./Task2_2.png)
+
+25 секунда - loading io.vertx, loaded 529 classes. Увеличилось Metaspace для хранения объектов и использование процессора.
+
+28 секунда - loading io.netty, loaded 2117 classes. Значительно вырос Metaspace, но также уменьшился Heap size, сработала сборка мусора.
+
+34 секунда - loading org.springframework, loaded 869 classes. Значительно выросли Metaspace и Heap size.
+
+35 секунда - первое creating 5000000 objects. Metaspace немного увеличился. Значительно увеличился Heap size.
+
+38 секунда - второе creating 5000000 objects. Metaspace незначительно вырос. Значительно увеличился Heap size. Также возрасла активность процессора.
+
+41 секунда - третье creating 5000000 objects. Metaspace не изменился. Значительно увеличился Heap size и активность процессора.
