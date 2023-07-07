@@ -54,7 +54,7 @@ public class JvmComprehension {
 ## Описание
 Предлагаем вам изучить использование памяти через VisualVM при загрузке новых классов и создании новых объектов
 
-### Результат вывода в консоль [программы](https://github.com/Arsennikum/jvm-visualvm-experience)
+### Результат вывода в консоль.
 ```
 Starting Gradle Daemon...
 Gradle Daemon started in 1 s 388 ms
@@ -89,4 +89,15 @@ BUILD SUCCESSFUL in 55s
 12:24:16: Execution finished ':JvmExperience.main()'.
 ```
 
-### Результат мониторинга посредством VisualVM
+### Мониторинг посредством VisualVM
+
+![task2](./Task2_1.png)
+
+![task2](./Task2_2.png)
+
+25 секунда - loading io.vertx, loaded 529 classes. Увеличилось Metaspace для хранения объектов и использование процессора.
+28 секунда - loading io.netty, loaded 2117 classes. Значительно вырос Metaspace, но также уменьшился Heap size, сработала сборка мусора.
+34 секунда - loading org.springframework, loaded 869 classes. Значительно выросли Metaspace и Heap size.
+35 секунда - первое creating 5000000 objects. Metaspace немного увеличился. Значительно увеличился Heap size.
+38 секунда - второе creating 5000000 objects. Metaspace незначительно вырос. Значительно увеличился Heap size. Также возрасла активность процессора.
+41 секунда - третье creating 5000000 objects. Metaspace не изменился. Значительно увеличился Heap size и активность процессора.
